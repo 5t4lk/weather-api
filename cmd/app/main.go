@@ -7,11 +7,17 @@ import (
 )
 
 func main() {
-	bytes, err := darksky.MakeRequest()
+	weatherBytes, err := darksky.MakeRequest()
 	if err != nil {
 		log.Fatalf("error while receiving data from API: %s", err)
 	}
-	for v := range bytes {
-		fmt.Println(string(v))
+
+	clearWeather, err := darksky.ClearJSON(weatherBytes)
+	if err != nil {
+		log.Fatalf("error while clearing JSON: %s", err)
+	}
+
+	for _, item := range clearWeather.Currently.Icon {
+		fmt.Print(string(item))
 	}
 }

@@ -1,6 +1,6 @@
-package awesomeProject4
+package entities
 
-type Welcome struct {
+type General struct {
 	Latitude  float64   `json:"latitude"`
 	Longitude float64   `json:"longitude"`
 	Timezone  string    `json:"timezone"`

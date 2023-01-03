@@ -1,6 +1,8 @@
 package darksky
 
 import (
+	"awesomeProject4/internal/entities"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 )
@@ -32,4 +34,15 @@ func MakeRequest() ([]byte, error) {
 	}
 
 	return data, nil
+}
+
+func ClearJSON(messyData []byte) (*entities.General, error) {
+	var data entities.General
+
+	err := json.Unmarshal(messyData, data)
+	if err != nil {
+		return nil, err
+	}
+
+	return &data, nil
 }
