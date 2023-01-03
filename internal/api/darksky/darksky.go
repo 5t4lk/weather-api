@@ -39,7 +39,7 @@ func MakeRequest() ([]byte, error) {
 func ClearJSON(messyData []byte) (*entities.General, error) {
 	var data entities.General
 
-	err := json.Unmarshal(messyData, data)
+	err := json.Unmarshal(messyData, &data)
 	if err != nil {
 		return nil, err
 	}

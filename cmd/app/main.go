@@ -2,7 +2,7 @@ package main
 
 import (
 	"awesomeProject4/internal/api/darksky"
-	"fmt"
+	"awesomeProject4/internal/user"
 	"log"
 )
 
@@ -17,7 +17,7 @@ func main() {
 		log.Fatalf("error while clearing JSON: %s", err)
 	}
 
-	for _, item := range clearWeather.Currently.Icon {
-		fmt.Print(string(item))
+	if err = user.Output(clearWeather); err != nil {
+		log.Fatalf("error while showing weather: %s", err)
 	}
 }
