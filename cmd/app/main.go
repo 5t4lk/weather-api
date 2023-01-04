@@ -8,11 +8,17 @@ import (
 )
 
 func main() {
-	if err := settings.Eject(); err != nil {
-		log.Fatalf("error while ejecting credentials: %s", err)
+	fileData, err := settings.ScanFile("settings.txt")
+	if err != nil {
+		log.Fatalf("error while scanning file: %s", err)
 	}
 
-	weatherBytes, err := darksky.MakeRequest()
+	latitude, longitude, apiKey, apiHost, err := settings.EjectData(fileData)
+	if err != nil {
+		log.Fatalf("error while ejecting data: %s", err)
+	}
+
+	weatherBytes, err := darksky.MakeRequest(latitude, longitude, apiKey, apiHost)
 	if err != nil {
 		log.Fatalf("error while receiving data from API: %s", err)
 	}

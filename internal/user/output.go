@@ -3,14 +3,16 @@ package user
 import (
 	"awesomeProject4/internal/entities"
 	"fmt"
+	"time"
 )
 
 func Output(data *entities.General) error {
+	tTime := Nowadays()
 	fmt.Printf("Your latitude: %.4f\n", data.Latitude)
 	fmt.Printf("Your longitude: %.4f\n", data.Longitude)
 	fmt.Printf("Timezone: %s\n", data.Timezone)
 	fmt.Print("___\n")
-	fmt.Printf("Time: %d\n", data.Currently.Time)
+	fmt.Printf("Time: %s\n", tTime)
 	fmt.Printf("Summary: %s\n", data.Currently.Summary)
 	fmt.Printf("Icon: %s\n", data.Currently.Icon)
 	fmt.Printf("Precipitation intensity: %.2f\n", data.Currently.PrecipIntensity)
@@ -29,4 +31,11 @@ func Output(data *entities.General) error {
 	fmt.Printf("Visibility: %d\n", data.Currently.Visibility)
 	fmt.Printf("Ozone: %.2f\n", data.Currently.Ozone)
 	return nil
+}
+
+func Nowadays() string {
+	now := time.Now()
+	tTime := fmt.Sprintf("%s", now.Local().Format(time.RFC1123))
+
+	return tTime
 }

@@ -3,24 +3,20 @@ package darksky
 import (
 	"awesomeProject4/internal/entities"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-const (
-	url           = "https://dark-sky.p.rapidapi.com/50.9574,0.5107?units=auto"
-	xRapidAPIKey  = "85e69f9465msh9b8963f3d02fc11p1fbbc9jsn64207893b164"
-	xRapidAPIHost = "dark-sky.p.rapidapi.com"
-)
-
-func MakeRequest() ([]byte, error) {
+func MakeRequest(latitude, longitude, apiKey, apiHost string) ([]byte, error) {
+	url := fmt.Sprintf("https://" + apiHost + "/" + latitude + "," + longitude + "?units=auto&lang=en")
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Add("X-RapidAPI-Key", xRapidAPIKey)
-	req.Header.Add("X-RapidAPI-Host", xRapidAPIHost)
+	req.Header.Add("X-RapidAPI-Key", apiKey)
+	req.Header.Add("X-RapidAPI-Host", apiHost)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
