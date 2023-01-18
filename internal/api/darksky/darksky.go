@@ -10,6 +10,7 @@ import (
 
 func MakeRequest(latitude, longitude, apiKey, apiHost string) ([]byte, error) {
 	url := fmt.Sprintf("https://" + apiHost + "/" + latitude + "," + longitude + "?units=auto&lang=en")
+	
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
