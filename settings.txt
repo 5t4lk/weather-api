@@ -1,4 +1,4 @@
-50.95
-0.51
-85e69f9465msh9b8963f3d02fc11p1fbbc9jsn64207893b164
-dark-sky.p.rapidapi.com
+[00.00 - put your latitude instead of this line]
+[0.00 - put your longitude instead of this line]
+[put your API Key instead of this line]
+[white-sky.s.rapidapi.com - put your longitude instead of this line]
