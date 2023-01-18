@@ -30,6 +30,7 @@ func Output(data *entities.General) error {
 	fmt.Printf("UV index: %d\n", data.Currently.UvIndex)
 	fmt.Printf("Visibility: %d\n", data.Currently.Visibility)
 	fmt.Printf("Ozone: %.2f\n", data.Currently.Ozone)
+	
 	return nil
 }
 
